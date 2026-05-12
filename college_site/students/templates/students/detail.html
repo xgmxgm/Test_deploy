@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Информация о студенте</title>
+		<style>
+			body {
+				background-color: #1b1a1a;
+				color: white;
+				font-family: Arial, sans-serif;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+			}
+
+			.card {
+				background: #2a2a2a;
+				padding: 30px;
+				border-radius: 12px;
+				width: 350px;
+				box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+				text-align: center;
+			}
+
+			h1 {
+				margin-bottom: 20px;
+			}
+
+			p {
+				margin: 10px 0;
+				font-size: 16px;
+				color: #ccc;
+			}
+
+			.back {
+				display: inline-block;
+				margin-top: 20px;
+				padding: 10px 15px;
+				background: #4da6ff;
+				color: white;
+				border-radius: 8px;
+				text-decoration: none;
+				transition: 200ms;
+			}
+
+			.back:hover {
+				background: #3399ff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="card">
+			<h1>{{ student.first_name }} {{ student.last_name }}</h1>
+
+			<p><strong>Возраст:</strong> {{ student.age }}</p>
+			<p><strong>Группа:</strong> {{ student.group }}</p>
+
+			<a href="/students/" class="back">← Назад</a>
+		</div>
+	</body>
+</html>

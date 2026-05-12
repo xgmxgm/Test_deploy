@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Редактировать студента</title>
+		<style>
+			body {
+				background-color: #1b1a1a;
+				color: white;
+				font-family: Arial, sans-serif;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 100vh;
+			}
+
+			.container {
+				background: #2a2a2a;
+				padding: 30px;
+				border-radius: 12px;
+				width: 350px;
+				box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+			}
+
+			h1 {
+				text-align: center;
+				margin-bottom: 20px;
+			}
+
+			label {
+				display: block;
+				margin-bottom: 5px;
+				font-size: 14px;
+				color: #ccc;
+			}
+
+			input {
+				width: 100%;
+				padding: 10px;
+				margin-bottom: 15px;
+				border: none;
+				border-radius: 8px;
+				background: #1f1f1f;
+				color: white;
+				outline: none;
+				transition: 200ms;
+			}
+
+			input:focus {
+				background: #333;
+			}
+
+			button {
+				width: 100%;
+				padding: 12px;
+				border: none;
+				border-radius: 8px;
+				background: #4da6ff;
+				color: white;
+				font-weight: bold;
+				cursor: pointer;
+				transition: 200ms;
+			}
+
+			button:hover {
+				background: #3399ff;
+			}
+
+			.back {
+				display: block;
+				text-align: center;
+				margin-top: 15px;
+				color: #aaa;
+				text-decoration: none;
+			}
+
+			.back:hover {
+				color: white;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<h1>Редактировать студента</h1>
+
+			<form method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+
+				<label>Имя</label>
+				<input
+					type="text"
+					name="first_name"
+					value="{{ student.first_name }}"
+					required
+				/>
+
+				<label>Фамилия</label>
+				<input
+					type="text"
+					name="last_name"
+					value="{{ student.last_name }}"
+					required
+				/>
+
+				<label>Возраст</label>
+				<input type="number" name="age" value="{{ student.age }}" required />
+
+				<label>Группа</label>
+				<input type="text" name="group" value="{{ student.group }}" required />
+
+				<label>Фото</label>
+				<input type="file" name="photo" value="{{ student.photo }}" />
+
+				<button type="submit">Сохранить</button>
+			</form>
+
+			<a href="/students/" class="back">← Назад</a>
+		</div>
+	</body>
+</html>

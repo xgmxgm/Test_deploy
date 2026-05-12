@@ -1,0 +1,71 @@
+{% load static %}
+
+<!doctype html>
+<html>
+	<head>
+		<title>Список студентов</title>
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+	</head>
+
+	<body>
+		<h1>Список студентов</h1>
+		<div style="display: flex; justify-content: space-between; width: 100%">
+			<a href="{% url 'add_student' %}">Добавить</a>
+
+			<div>
+				<a href="{% url 'profile' %}">Профиль</a>
+
+				<form method="POST" action="{% url 'logout' %}" style="display: inline">
+					{% csrf_token %}
+					<button type="submit">Выйти</button>
+				</form>
+			</div>
+		</div>
+
+		<ul>
+			{% for student in students %}
+			<li>
+				<span>
+					{% if student.photo %}
+					<img src="{{ student.photo.url }}" width="100" />
+					{% else %}
+					<p>Фото нет</p>
+					{% endif %}
+				</span>
+				<span>
+					{{ student.first_name }} {{ student.last_name }} — {{ student.group.name }}
+				</span>
+				<span>
+					{% for club in student.clubs.all %}
+					<p>{{ club.name }}</p>
+					{% endfor %}
+				</span>
+				<span>
+					<a href="{% url 'student_detail' student.id %}">Подробнее</a>
+					<a href="{% url 'edit_student' student.id %}">Редактировать</a>
+					<a href="{% url 'delete_student' student.id %}">Удалить</a>
+				</span>
+			</li>
+			{% endfor %}
+		</ul>
+
+		<!-- <table>
+			<thead>
+				<tr>
+					<th>Имя</th>
+					<th>Фамилия</th>
+					<th>Группа</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for student in students %}
+				<tr>
+					<td>{{ student.first_name }}</td>
+					<td>{{ student.last_name }}</td>
+					<td>{{ student.group }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table> -->
+	</body>
+</html>
